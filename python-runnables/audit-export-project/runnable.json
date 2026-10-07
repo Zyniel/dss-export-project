@@ -1,0 +1,23 @@
+{
+    "meta": {
+        "label": "Audit: export project metadata",
+        "description": "Exports the metadata of one or several projects (no data, no folder content, no Git history) into the audit hub folder. Reserved to the audit group.",
+        "icon": "icon-download-alt"
+    },
+
+    "impersonate": false,
+    "permissions": ["READ_CONF"],
+    "resultType": "HTML",
+    "resultLabel": "Audit export report",
+
+    "params": [
+        {
+            "name": "project_keys",
+            "label": "Project keys",
+            "type": "STRINGS",
+            "description": "Keys of the projects to export. Run \"Audit: list projects\" to find them.",
+            "allowDuplicates": false,
+            "mandatory": true
+        }
+    ]
+}

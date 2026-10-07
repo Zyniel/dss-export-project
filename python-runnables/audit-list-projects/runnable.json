@@ -1,0 +1,14 @@
+{
+    "meta": {
+        "label": "Audit: list projects",
+        "description": "Lists every project of the instance with its key, so that auditors can pick the ones to export. Reserved to the audit group.",
+        "icon": "icon-list"
+    },
+
+    "impersonate": false,
+    "permissions": ["READ_CONF"],
+    "resultType": "RESULT_TABLE",
+    "resultLabel": "Projects",
+
+    "params": []
+}

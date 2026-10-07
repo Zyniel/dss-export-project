@@ -1,0 +1,91 @@
+{
+    "id": "cdp-audit-export",
+    "version": "0.1.0",
+    "meta": {
+        "label": "CDP Audit Export",
+        "description": "Lets members of the audit group export the metadata of any project (no data, no folders, no Git history) without holding advanced project permissions. The export runs with an administrative identity and is delivered in a hub project folder.",
+        "author": "CDP Platform Team",
+        "icon": "icon-shield",
+        "tags": ["Governance", "Audit"]
+    },
+    "params": [
+        {
+            "name": "sep_access",
+            "label": "Access control",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "auditor_group",
+            "label": "Auditor group",
+            "type": "STRING",
+            "description": "DSS group whose members may run the audit macros.",
+            "defaultValue": "CDP_ADMIN_AUDIT",
+            "mandatory": true
+        },
+        {
+            "name": "restrict_to_hub_project",
+            "label": "Only run from the hub project",
+            "type": "BOOLEAN",
+            "description": "When checked, the macros refuse to run from any other project.",
+            "defaultValue": true
+        },
+        {
+            "name": "max_projects_per_run",
+            "label": "Max projects per run",
+            "type": "INT",
+            "description": "Upper limit of projects exported by a single macro run.",
+            "defaultValue": 10,
+            "minI": 1,
+            "maxI": 200
+        },
+        {
+            "name": "sep_delivery",
+            "label": "Delivery",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "hub_project_key",
+            "label": "Hub project key",
+            "type": "STRING",
+            "description": "Project that receives the exports. The auditor group needs read access to it, nothing more.",
+            "mandatory": true
+        },
+        {
+            "name": "hub_folder",
+            "label": "Hub managed folder",
+            "type": "STRING",
+            "description": "Name or id of the managed folder, in the hub project, where the archives are written.",
+            "defaultValue": "audit_exports",
+            "mandatory": true
+        },
+        {
+            "name": "sep_sanitization",
+            "label": "Sanitization",
+            "type": "SEPARATOR"
+        },
+        {
+            "name": "variables_redaction",
+            "label": "Project variables",
+            "type": "SELECT",
+            "description": "How project variable values are treated in the delivered archive. Variable names are always kept.",
+            "selectChoices": [
+                {"value": "ALL", "label": "Redact every value"},
+                {"value": "SECRET_KEYS", "label": "Redact values of secret-looking names only"},
+                {"value": "NONE", "label": "Keep values"}
+            ],
+            "defaultValue": "ALL"
+        },
+        {
+            "name": "sep_identity",
+            "label": "Administrative identity",
+            "type": "SEPARATOR",
+            "description": "Leave the key empty to let DSS generate the privileged client. Fill it only if that helper is not usable on this instance."
+        },
+        {
+            "name": "admin_api_key",
+            "label": "Admin API key (optional)",
+            "type": "PASSWORD",
+            "description": "Global admin API key used for the export instead of the DSS helper."
+        }
+    ]
+}
